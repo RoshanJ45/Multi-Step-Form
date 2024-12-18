@@ -1,0 +1,127 @@
+<div class="container">
+  <h2>Multi-Step Form</h2>
+  <div class="step-indicator">
+    <span class="active">1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+    }
+    .container {
+      width: 300px;
+      display: grid;
+      gap: 15px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px #0000001a;
+    }
+    .step {
+      display: none;
+    }
+    .step.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    button {
+      padding: 8px 30px;
+      width: 50%;
+      border: none;
+      border-radius: 4px;
+      background-color: #4CAF50;
+      color: #fff;
+      cursor: pointer;
+    }
+    button[disabled] {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+    }
+    .step-indicator span {
+      width: 25px;
+      height: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ccc;
+      border-radius: 50%;
+      color: #fff;
+    }
+    .step-indicator span.active {
+      background-color: #4CAF50;
+    }
+  </style>
+  <div class="step active" id="step1">
+    <label for="name">Your Name</label>
+    <input id="name" placeholder="Name">
+  </div>
+  <div class="step" id="step2">
+    <label for="email">Your Email</label>
+    <input id="email" placeholder="Email">
+  </div>
+  <div class="step" id="step3">
+    <label for="phone">Your Phone</label>
+    <input id="phone" placeholder="Phone">
+  </div>
+  <div class="buttons">
+    <button id="prev-btn" onclick="prevStep()" disabled>Pre</button>
+    <button id="next-btn" onclick="nextStep()">Next</button>
+  </div>
+  <span id="result"></span>
+  <script>
+    let currentStep = 1;
+    function showStep(step) {
+      document.querySelectorAll('.step').forEach((el) => el.classList.remove('active'));
+      document.getElementById(`step${step}`).classList.add('active');
+      document.querySelectorAll('.step-indicator span').forEach((el, index) => {
+        el.classList.toggle('active', index + 1 === step);
+      });
+      document.getElementById('prev-btn').disabled = step === 1;
+      document.getElementById('next-btn').innerText = step === 3 ? 'Submit' : 'Next';
+    }
+    function nextStep() {
+      if (currentStep < 3) {
+        currentStep++;
+        showStep(currentStep);
+      } else {
+        document.getElementById("result").innerText = "Submitted successfully!"
+      }
+    }
+    function prevStep() {
+      if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    }
+    showStep(currentStep);
+  </script>
+</div>

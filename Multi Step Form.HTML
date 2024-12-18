@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Multi-Step Form</h2>
+  <div class="step-indicator">
+    <span class="active">1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+  <style>
+    
+  </style>
+  <div class="step active" id="step1">
+    <label for="name">Your Name</label>
+    <input id="name" placeholder="Name">
+  </div>
+  <div class="step" id="step2">
+    <label for="email">Your Email</label>
+    <input id="email" placeholder="Email">
+  </div>
+  <div class="step" id="step3">
+    <label for="phone">Your Phone</label>
+    <input id="phone" placeholder="Phone">
+  </div>
+  <div class="buttons">
+    <button id="prev-btn" onclick="prevStep()" disabled>Pre</button>
+    <button id="next-btn" onclick="nextStep()">Next</button>
+  </div>
+  <span id="result"></span>
+  <script>
+    
+  </script>
+</div>
